@@ -1,0 +1,21 @@
+{
+  "name": "cnlthd-assignment-01",
+  "version": "1.0.0",
+  "description": "cnlthd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/huynonstop/cnlthd-assignment-01.git",
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "huynonstop",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huynonstop/cnlthd-assignment-01/issues"
+  },
+  "homepage": "https://github.com/huynonstop/cnlthd-assignment-01#readme",
+  "private": true,
+  "workspaces": ["./packages/*"]
+}
