@@ -1,11 +1,16 @@
 import express from "express";
 import cors from "cors";
+import helmet from "helmet";
+
 import { PORT } from "./config.js";
 import apiRouter from "./routers/api.js";
+import syncDB from "./syncDB.js";
 const app = express();
 
 app.use(cors());
+app.use(helmet());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 console.log("Loading API route");
 app.get("/", (req, res) => {
@@ -35,6 +40,11 @@ app.use((err, req, res) => {
   });
 });
 
-app.listen(PORT, () => {
-  console.log(`Listening on port: ${PORT}`);
-});
+const bootstrap = async () => {
+  await syncDB;
+  app.listen(PORT, () => {
+    console.log(`Listening on port: ${PORT}`);
+  });
+};
+
+bootstrap();

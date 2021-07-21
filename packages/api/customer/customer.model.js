@@ -25,11 +25,9 @@ const Customer = sequelize.define(
   }
 );
 
-const sync = async () => {
+export const sync = async () => {
   await Customer.sync();
   console.log("Customer model Synced");
 };
-
-sync();
 
 export default Customer;

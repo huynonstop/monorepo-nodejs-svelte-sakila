@@ -7,13 +7,17 @@ import {
   update,
   remove,
 } from "./customer.controller.js";
+import {
+  createDTOValidatorMiddleware,
+  updateDTOValidatorMiddleware,
+} from "./customer.validator.js";
 const router = express.Router();
 
 router.get("/test", test);
 
 router.get("/", getAll);
 router.get("/:customerId", get);
-router.post("/", create);
+router.post("/", createDTOValidatorMiddleware, create);
 router.delete("/:customerId", remove);
-router.patch("/:customerId", update);
+router.patch("/:customerId", updateDTOValidatorMiddleware, update);
 export default router;

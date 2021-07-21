@@ -22,11 +22,9 @@ const Actor = sequelize.define(
   }
 );
 
-const sync = async () => {
+export const sync = async () => {
   await Actor.sync();
   console.log("Actor model Synced");
 };
-
-sync();
 
 export default Actor;

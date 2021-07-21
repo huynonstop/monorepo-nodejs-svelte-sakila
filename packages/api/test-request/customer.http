@@ -1,8 +1,12 @@
-GET http://localhost:3000/api/customer?page=0
+GET http://localhost:3001/api/customer?page=0
 
 ###
 
-POST http://localhost:3000/api/customer
+GET http://localhost:3001/api/customer/601
+
+###
+
+POST http://localhost:3001/api/customer
 content-type: application/json
 
 {
@@ -16,16 +20,15 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/customer/600
+DELETE http://localhost:3001/api/customer/600
 
 ###
 
-PATCH http://localhost:3000/api/customer/601
+PATCH http://localhost:3001/api/customer/601
 content-type: application/json
 
 {
-    "storeId": 2,
-    "firstName": "huy",
+    "firstName": "huy 3",
     "lastName": "hi",
     "email": "huy@yahoo.com",
     "addressId": 5
