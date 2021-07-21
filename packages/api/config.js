@@ -5,4 +5,4 @@ export default {
   HOST: "localhost",
   DIALECT: "mysql",
 };
-export const PORT = 3000;
+export const PORT = 3001;

@@ -1,10 +1,4 @@
-import {
-  findAll,
-  findById,
-  create as createCustomer,
-  update as updateCustomer,
-  remove as removeCustomer,
-} from "./customer.model.js";
+import CustomerService from "./customer.service.js";
 
 export const test = (req, res) => {
   res.json({
@@ -14,7 +8,7 @@ export const test = (req, res) => {
 
 export const get = async (req, res) => {
   const { customerId } = req.params;
-  const customer = await findById(customerId);
+  const customer = await CustomerService.getById(customerId);
   res.json(customer);
 };
 
@@ -25,13 +19,13 @@ export const getAll = async (req, res) => {
     options.offset = page * +limit;
     options.limit = limit;
   }
-  const customers = await findAll(options);
+  const customers = await CustomerService.getAll(options);
   res.json(customers);
 };
 
 export const create = async (req, res) => {
   const { storeId, firstName, lastName, email, addressId, active } = req.body;
-  const customer = await createCustomer({
+  const customer = await CustomerService.create({
     storeId,
     firstName,
     lastName,
@@ -46,7 +40,7 @@ export const update = async (req, res) => {
   const { customerId } = req.params;
   const { storeId, firstName, lastName, email, addressId, active } = req.body;
 
-  const updatedCustomer = await updateCustomer(customerId, {
+  const updatedCustomer = await CustomerService.update(customerId, {
     storeId,
     firstName,
     lastName,
@@ -59,6 +53,6 @@ export const update = async (req, res) => {
 
 export const remove = async (req, res) => {
   const { customerId } = req.params;
-  const removedCustomer = await removeCustomer(customerId);
+  const removedCustomer = await CustomerService.remove(customerId);
   res.json(removedCustomer);
 };

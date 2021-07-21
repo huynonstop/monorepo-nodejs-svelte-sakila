@@ -1,0 +1,25 @@
+GET http://localhost:3000/api/actor/1
+
+###
+
+POST http://localhost:3000/api/actor
+content-type: application/json
+
+{
+    "firstName": "huy",
+    "lastName": "hi"
+}
+
+###
+
+DELETE http://localhost:3000/api/actor/201
+
+###
+
+PATCH  http://localhost:3000/api/actor/203
+content-type: application/json
+
+{
+    "firstName": "huy 1",
+    "lastName": "hi"
+}

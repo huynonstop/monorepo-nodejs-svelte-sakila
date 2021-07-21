@@ -1,10 +1,4 @@
-import {
-  findAll,
-  findById,
-  create as createActor,
-  update as updateActor,
-  remove as removeActor,
-} from "./actor.model.js";
+import ActorService from "./actor.service.js";
 
 export const test = (req, res) => {
   res.json({
@@ -14,25 +8,25 @@ export const test = (req, res) => {
 
 export const get = async (req, res) => {
   const { actorId } = req.params;
-  const actor = await findById(actorId);
+  const actor = await ActorService.getById(actorId);
   res.json(actor);
 };
 
 export const getAll = async (req, res) => {
-  const actors = await findAll();
+  const actors = await ActorService.getAll();
   res.json(actors);
 };
 
 export const create = async (req, res) => {
   const { firstName, lastName } = req.body;
-  const actor = await createActor(firstName, lastName);
+  const actor = await ActorService.create(firstName, lastName);
   res.json(actor);
 };
 
 export const update = async (req, res) => {
   const { actorId } = req.params;
   const { firstName, lastName } = req.body;
-  const updatedActor = await updateActor(actorId, {
+  const updatedActor = await ActorService.update(actorId, {
     firstName,
     lastName,
   });
@@ -41,6 +35,6 @@ export const update = async (req, res) => {
 
 export const remove = async (req, res) => {
   const { actorId } = req.params;
-  const removedActor = await removeActor(actorId);
+  const removedActor = await ActorService.remove(actorId);
   res.json(removedActor);
 };
