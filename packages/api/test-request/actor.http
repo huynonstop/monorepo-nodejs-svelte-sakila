@@ -1,8 +1,8 @@
-GET http://localhost:3000/api/actor/1
+GET http://localhost:3001/api/actor/202
 
 ###
 
-POST http://localhost:3000/api/actor
+POST http://localhost:3001/api/actor
 content-type: application/json
 
 {
@@ -12,14 +12,51 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/actor/201
+POST http://localhost:3001/api/actor
+content-type: application/json
+
+{
+    "firstName": 1,
+    "lastName": 1,
+}
 
 ###
 
-PATCH  http://localhost:3000/api/actor/203
+POST http://localhost:3001/api/actor
+content-type: application/json
+
+{
+    "firstName": "huy next"
+}
+
+###
+
+DELETE http://localhost:3001/api/actor/201
+
+###
+
+PATCH  http://localhost:3001/api/actor/202
 content-type: application/json
 
 {
     "firstName": "huy 1",
     "lastName": "hi"
+}
+
+###
+
+PATCH  http://localhost:3001/api/actor/202
+content-type: application/json
+
+{
+    "firstName": "huy 345"
+}
+
+###
+
+PATCH  http://localhost:3001/api/actor/202
+content-type: application/json
+
+{
+    "firstName": null
 }

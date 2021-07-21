@@ -1,7 +1,7 @@
 import Actor from "./actor.model.js";
 
-export const create = (firstName, lastName) => {
-  return Actor.create({ firstName, lastName });
+export const create = (data) => {
+  return Actor.create(data);
 };
 
 export const findById = (id) => {

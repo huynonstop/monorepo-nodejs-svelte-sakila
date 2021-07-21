@@ -1,5 +1,4 @@
 import ActorService from "./actor.service.js";
-
 export const test = (req, res) => {
   res.json({
     message: "Loaded actor",
@@ -19,7 +18,7 @@ export const getAll = async (req, res) => {
 
 export const create = async (req, res) => {
   const { firstName, lastName } = req.body;
-  const actor = await ActorService.create(firstName, lastName);
+  const actor = await ActorService.create({ firstName, lastName });
   res.json(actor);
 };
 
