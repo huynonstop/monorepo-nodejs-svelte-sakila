@@ -1,4 +1,4 @@
-import sequelize from "../db.js";
+import sequelize from "../libs/sequelize.js";
 import sq from "sequelize";
 const { DataTypes } = sq;
 
