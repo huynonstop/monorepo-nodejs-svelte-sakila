@@ -1,63 +1,104 @@
 <script>
+  import { Router, Link, Route } from "svelte-routing";
   import logo from "./assets/svelte.png";
-  import Counter from "./lib/Counter.svelte";
+  import Home from "./pages/Home.svelte";
+  import NotFound from "./pages/NotFound.svelte";
+  import ActorPage from "./pages/ActorPage.svelte";
+  import CustomerPage from "./pages/CustomerPage.svelte";
+  export let url = "";
 </script>
 
 <svelte:head>
   <title>Sakila</title>
 </svelte:head>
 
-<main>
-  <h1>
-    <img src={logo} alt="Svelte Logo" />
-    Sakila Client
-  </h1>
-
-  <Counter />
-
-  <p>
-    Visit <a href="https://svelte.dev">svelte.dev</a> to learn how to build Svelte
-    apps.
-  </p>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme">SvelteKit</a> for
-    the officially supported framework, also powered by Vite!
-  </p>
-</main>
+<Router {url}>
+  <header>
+    <h1 class="d-flex-center">
+      <img src={logo} alt="Svelte Logo" />
+      Sakila
+    </h1>
+    <nav class="d-flex-center">
+      <Link class="link" to="/">Home</Link>
+      <Link to="actor">Actor</Link>
+      <Link to="customer">Customer</Link>
+    </nav>
+  </header>
+  <Route path="actor/*"><ActorPage /></Route>
+  <Route path="customer/*"><CustomerPage /></Route>
+  <Route path="/"><Home /></Route>
+  <Route component={NotFound} />
+</Router>
 
 <style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 1040px;
+  :global(html),
+  :global(#app),
+  :global(body) {
     height: 100%;
     width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  :global(body) {
+    min-height: 100%;
+  }
+
+  :global(*) {
+    box-sizing: border-box;
+  }
+
+  :global(.container) {
+    max-width: min(1440px, 80%);
     margin: 0 auto;
   }
 
-  h1 img {
-    height: 100%;
-    width: 4rem;
-  }
-
-  h1 {
-    color: #ff3e00;
-    font-size: 4rem;
-    font-weight: 100;
-    margin: 2rem auto;
+  :global(.d-flex-center) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  p {
-    margin: 1rem auto;
-    line-height: 1.35;
+  :global(.fill-page) {
+    height: calc(100% - 5rem);
+  }
+
+  :root {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+
+  h1 {
+    color: #ff3e00;
+    margin: 0;
+    font-size: 2rem;
+  }
+
+  h1 > img {
+    height: 100%;
+    width: 4rem;
+  }
+
+  header {
+    width: 100%;
+    height: 5rem;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav {
+    column-gap: 2rem;
+  }
+
+  nav > :global(a) {
+    font-size: 2rem;
+    text-decoration: none;
+    color: #ff3e00;
+  }
+
+  nav > :global(a:hover) {
+    text-decoration: underline;
   }
 </style>
