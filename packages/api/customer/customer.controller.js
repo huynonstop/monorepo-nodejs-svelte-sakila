@@ -23,7 +23,7 @@ export const getAll = async (req, res) => {
   res.json(customers);
 };
 
-export const create = async (req, res) => {
+export const create = async (req, res, next) => {
   const { storeId, firstName, lastName, email, addressId, active } = req.body;
   const customer = await CustomerService.create({
     storeId,
@@ -32,11 +32,11 @@ export const create = async (req, res) => {
     email,
     addressId,
     active,
-  });
-  res.json(customer);
+  }).catch((err) => next(err));
+  if (customer) res.json(customer);
 };
 
-export const update = async (req, res) => {
+export const update = async (req, res, next) => {
   const { customerId } = req.params;
   const { storeId, firstName, lastName, email, addressId, active } = req.body;
 
@@ -47,12 +47,14 @@ export const update = async (req, res) => {
     email,
     addressId,
     active,
-  });
-  res.json(updatedCustomer);
+  }).catch((err) => next(err));
+  if (updatedCustomer) res.json(updatedCustomer);
 };
 
-export const remove = async (req, res) => {
+export const remove = async (req, res, next) => {
   const { customerId } = req.params;
-  const removedCustomer = await CustomerService.remove(customerId);
-  res.json(removedCustomer);
+  const removedCustomer = await CustomerService.remove(customerId).catch(
+    (err) => next(err)
+  );
+  if (removedCustomer) res.json(removedCustomer);
 };

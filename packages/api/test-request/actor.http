@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/actor/202
+GET http://localhost:3001/api/actor/203
 
 ###
 
@@ -31,7 +31,7 @@ content-type: application/json
 
 ###
 
-DELETE http://localhost:3001/api/actor/201
+DELETE http://localhost:3001/api/actor/1
 
 ###
 

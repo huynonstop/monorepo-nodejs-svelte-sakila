@@ -18,6 +18,12 @@ export const getAll = async (req, res) => {
 
 export const create = async (req, res) => {
   const { firstName, lastName } = req.body;
+  if (!firstName || !lastName) {
+    return res.status(400).json({
+      message: "Must have firstname and lastname",
+      error: "BadRequest",
+    });
+  }
   const actor = await ActorService.create({ firstName, lastName });
   res.json(actor);
 };
@@ -25,6 +31,12 @@ export const create = async (req, res) => {
 export const update = async (req, res) => {
   const { actorId } = req.params;
   const { firstName, lastName } = req.body;
+  if (!firstName || !lastName) {
+    return res.status(400).json({
+      message: "Must have firstname and lastname",
+      error: "BadRequest",
+    });
+  }
   const updatedActor = await ActorService.update(actorId, {
     firstName,
     lastName,
@@ -32,8 +44,10 @@ export const update = async (req, res) => {
   res.json(updatedActor);
 };
 
-export const remove = async (req, res) => {
+export const remove = async (req, res, next) => {
   const { actorId } = req.params;
-  const removedActor = await ActorService.remove(actorId);
-  res.json(removedActor);
+  const removedActor = await ActorService.remove(actorId).catch((err) =>
+    next(err)
+  );
+  if (removedActor) res.json(removedActor);
 };

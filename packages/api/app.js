@@ -27,7 +27,7 @@ app.use("*", (req, res) => {
   });
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   if (err.status && err.name) {
     return res.status(err.status).json({
       message: err.message,

@@ -6,6 +6,10 @@ GET http://localhost:3001/api/customer/601
 
 ###
 
+GET http://localhost:3001/api/customer
+
+###
+
 POST http://localhost:3001/api/customer
 content-type: application/json
 
