@@ -1,3 +1,3 @@
-# cnlthd-assignment-01
+# monorepo-nodejs-svelte-sakila
 
-monorepo
+cnlthd-assignment-01
